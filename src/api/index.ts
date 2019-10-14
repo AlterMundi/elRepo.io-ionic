@@ -83,15 +83,7 @@ const api = {
     getBtoa: () => 'Basic ' + Base64.btoa(api.state.user.mLocationId + ":" + api.state.password),
     send: (version: string, { payload }:apiRequest) =>  {
         const { path, data, method } = payload;
-        if(version === 'api') {
-            let headers = new Headers()
-            //Add auth headers
-            if (api.isLogged()) {
-                headers.set('Authorization', api.getBtoa())
-            }
-            return apiHttp(api.getUrl(), path, data, method || 'POST', headers)
-        }
-        else if(version === 'stream') {
+        if(version === 'stream') {
             const evtSource = new EventSource(api.getUrl()+path, {
                 data,
                 headers: {
@@ -100,6 +92,12 @@ const api = {
             });
             return Promise.resolve(evtSource);
         }
+        let headers = new Headers()
+        //Add auth headers
+        if (api.isLogged()) {
+            headers.set('Authorization', api.getBtoa())
+        }
+        return apiHttp(api.getUrl(), path, data, method || 'POST', headers)
     }
 };
 

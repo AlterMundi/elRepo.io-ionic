@@ -80,14 +80,14 @@ const api = {
     isLogged: () => api.state.login,
     setState: (state: apiState) => api.state = api.state = {...api.state, ...state},
     getUrl: () => api.state.url+':'+api.state.port,
-    getBtoa: () => Base64.btoa(api.state.user.mLocationId + ":" + api.state.password),
+    getBtoa: () => 'Basic ' + Base64.btoa(api.state.user.mLocationId + ":" + api.state.password),
     send: (version: string, { payload }:apiRequest) =>  {
         const { path, data, method } = payload;
         if(version === 'api') {
             let headers = new Headers()
             //Add auth headers
             if (api.isLogged()) {
-                headers.set('Authorization', 'Basic ' + api.getBtoa())
+                headers.set('Authorization', api.getBtoa())
             }
             return apiHttp(api.getUrl(), path, data, method || 'POST', headers)
         }
@@ -95,7 +95,7 @@ const api = {
             const evtSource = new EventSource(api.getUrl()+path, {
                 data,
                 headers: {
-                    'Authorization': 'Basic ' + api.getBtoa()
+                    'Authorization': api.getBtoa()
                 }
             });
             return Promise.resolve(evtSource);

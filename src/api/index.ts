@@ -68,8 +68,8 @@ interface apiRequest {
 
 const api = {
     state: {
-        url:'',
-        port: '',
+        url:'http://localhost',
+        port: '9092',
         login: false,
         user: {
             mLocationId: ''

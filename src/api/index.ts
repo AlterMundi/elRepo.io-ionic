@@ -10,7 +10,6 @@ const logRequest = (type: string, data: any) => {
 }
 
 const pullRequest = ()  => {
-    requestList.size
     if(requestList.size > 0) {
         requestList.values().next().value.callRequest()
     }

@@ -1,48 +1,64 @@
-import { apiCall } from './types';
+// eslint-disable-next-line 
+import { apiCall, createLocationResponse, createChannelResponse, createForumResponse, forum } from './types';
 
-export const endpoints = (apiCall:apiCall) => ({
-  jsonApiServer: {
-    authorizeToken: (data?: any) => {
+export const endpoints = (apiCall:apiCall<any>) => ({
+	jsonApiServer: {
+		authorizeToken: (data?: any) => {
       //Input: token
-      //Rerval: boolean
-      return apiCall({path: '/jsonApiServer/authorizeToken', data });
-    },
-    decodeToken: (data?: any) => {
+			//Rerval: boolean
+			return apiCall({path: '/jsonApiServer/authorizeToken', data });
+		},
+		decodeToken: (data?: any) => {
       //Input: token
-      //Rerval: string
-      return apiCall({path: '/jsonApiServer/decodeToken', data });
-    },
-    encondeToken: (data?: any) => {
+			//Rerval: string
+			return apiCall({path: '/jsonApiServer/decodeToken', data });
+		},
+		encondeToken: (data?: any) => {
       //Input: token
-      //Rerval: string
-      return apiCall({path: '/jsonApiServer/encondeToken', data });
-    },
-    getAuthorizedTokens: (data?: any) => {
-      //Rerval: [string]
-      return apiCall({path: '/jsonApiServer/getAuthorizedTokens', data });
-    },
-    isAuthTokenValid: (data?: any) => {
+			//Rerval: string
+			return apiCall({path: '/jsonApiServer/encondeToken', data });
+		},
+		getAuthorizedTokens: (data?: any) => {
+			return apiCall({path: '/jsonApiServer/getAuthorizedTokens', data });
+		},
+		isAuthTokenValid: (data?: any) => {
       //Input: token
-      //Rerval: boolean
-      return apiCall({path: '/jsonApiServer/isAuthTokenValid', data });
-    },
-    requestNewTokenAutorization: (data?: any) => {
+			//Rerval: boolean
+			return apiCall({path: '/jsonApiServer/isAuthTokenValid', data });
+		},
+		requestNewTokenAutorization: (data?: any) => {
       //Input: token
-      //Rerval: boolean
-      return apiCall({path: '/jsonApiServer/requestNewTokenAutorization', data });
-    },
-    revokeAuthToken: (data?: any) => {
+			//Rerval: boolean
+			return apiCall({path: '/jsonApiServer/requestNewTokenAutorization', data });
+		},
+		revokeAuthToken: (data?: any) => {
       //Input: token
-      //Rerval: boolean
-      return apiCall({path: '/jsonApiServer/revokeAuthToken', data });
-    },
+			//Rerval: boolean
+			return apiCall({path: '/jsonApiServer/revokeAuthToken', data });
+		},
     version: (data?: any) => {
       //Output: major (number), minor (number), mini (number), extra (string), human (string)
-      //Rerval: void
-      return apiCall({path: '/jsonApiServer/version', data });
-    },
-  },
-  rsConfig: {
+			//Rerval: void
+			return apiCall({path: '/jsonApiServer/version', data });
+		},
+	},
+	rsBanList: {
+		enableIPFiltering: (data?: any) => {
+			//Rerval: void
+			return apiCall({path: '/rsBanList/enableIPFiltering', data });
+		},
+		ipFilteringEnabled: (data?: any) => {
+			//Rerval: boolean
+			return apiCall({path: '/rsBanList/ipFilteringEnabled', data });
+		},
+	},
+	rsBroadcastDiscovery: {
+		getDiscoveredPeers: (data?: any) => {
+			//Rerval: [RsBroadcastDiscoveryResult]
+			return apiCall({path: '/rsBroadcastDiscovery/getDiscoveredPeers', data });
+		},
+	},
+	rsConfig: {
     getAllBandwidthRates: (data?: any) => {
       //Output: ratemap (Map<RsPeerId,RsConfigDataRates>)
       //Rerval: number
@@ -88,31 +104,12 @@ export const endpoints = (apiCall:apiCall) => ({
       return apiCall({path: '/rsConfig/setOperatingMode', data });
     },
   },
-  rsDisc: {
-    getDiscFriends: (data?: any) => {
-      //Input: id
-      //Output: friends ([RsPeerId])
-      //Rerval: boolean
-      return apiCall({path: '/rsDisc/getDiscFriends', data });
-    },
-    getDiscPgpFriends: (data?: any) => {
-      //Input: pgpid
-      //Output: gpg_friends ([RsPgpId])
-      //Rerval: boolean
-      return apiCall({path: '/rsDisc/getDiscPgpFriends', data });
-    },
-    getPeerVersion: (data?: any) => {
-      //Input: id
-      //Output: versions (string)
-      //Rerval: boolean
-      return apiCall({path: '/rsDisc/getPeerVersion', data });
-    },
-    getWaitingDiscCount: (data?: any) => {
-      //Output: sendCount (number), recvCount (number)
-      //Rerval: boolean
-      return apiCall({path: '/rsDisc/getWaitingDiscCount', data });
-    },
-  },
+	rsEvents: {
+		registerEventsHandler: (data?: any) => {
+
+			return apiCall({path: '/rsEvents/registerEventsHandler', data });
+		},
+	},
   rsFiles: {
     addSharedDirectory: (data?: any) => {
       //Input: dir
@@ -130,11 +127,23 @@ export const endpoints = (apiCall:apiCall) => ({
       //Rerval: number
       return apiCall({path: '/rsFiles/banFile', data });
     },
-    defaultChunkStrategy: (data?: any) => {
-      //Rerval: FileChunksInfo_ChunkStrategy
-      return apiCall({path: '/rsFiles/defaultChunkStrategy', data });
-    },
-    FileCancel: (data?: any) => {
+		defaultChunkStrategy: (data?: any) => {
+			//Rerval: FileChunksInfo_ChunkStrategy
+			return apiCall({path: '/rsFiles/defaultChunkStrategy', data });
+		},
+		ExtraFileHash: (data?: any) => {
+			//Rerval: boolean
+			return apiCall({path: '/rsFiles/ExtraFileHash', data });
+		},
+		ExtraFileRemove: (data?: any) => {
+			//Rerval: boolean
+			return apiCall({path: '/rsFiles/ExtraFileRemove', data });
+		},
+		ExtraFileStatus: (data?: any) => {
+			//Rerval: boolean
+			return apiCall({path: '/rsFiles/ExtraFileStatus', data });
+		},
+		FileCancel: (data?: any) => {
       //Input: hash
       //Rerval: boolean
       return apiCall({path: '/rsFiles/FileCancel', data });
@@ -181,23 +190,27 @@ export const endpoints = (apiCall:apiCall) => ({
       //Rerval: boolean
       return apiCall({path: '/rsFiles/FileUploads', data });
     },
-    ForceDirectoryCheck: (data?: any) => {
-      //Rerval: void
-      return apiCall({path: '/rsFiles/ForceDirectoryCheck', data });
-    },
-    freeDiskSpaceLimit: (data?: any) => {
-      //Rerval: number
-      return apiCall({path: '/rsFiles/freeDiskSpaceLimit', data });
-    },
-    getDownloadDirectory: (data?: any) => {
-      //Rerval: string
-      return apiCall({path: '/rsFiles/getDownloadDirectory', data });
-    },
-    getPartialsDirectory: (data?: any) => {
-      //Rerval: string
-      return apiCall({path: '/rsFiles/getPartialsDirectory', data });
-    },
-    getPrimaryBannedFilesList: (data?: any) => {
+		ForceDirectoryCheck: (data?: any) => {
+			//Rerval: void
+			return apiCall({path: '/rsFiles/ForceDirectoryCheck', data });
+		},
+		freeDiskSpaceLimit: (data?: any) => {
+			//Rerval: number
+			return apiCall({path: '/rsFiles/freeDiskSpaceLimit', data });
+		},
+		getDownloadDirectory: (data?: any) => {
+			//Rerval: string
+			return apiCall({path: '/rsFiles/getDownloadDirectory', data });
+		},
+		getFileData: (data?: any) => {
+			//Rerval: boolean
+			return apiCall({path: '/rsFiles/getFileData', data });
+		},
+		getPartialsDirectory: (data?: any) => {
+			//Rerval: string
+			return apiCall({path: '/rsFiles/getPartialsDirectory', data });
+		},
+		getPrimaryBannedFilesList: (data?: any) => {
       //Output: bannedFiles (Map<RsFileHash,BannedFileEntry>)
       //Rerval: boolean
       return apiCall({path: '/rsFiles/getPrimaryBannedFilesList', data });
@@ -279,32 +292,66 @@ export const endpoints = (apiCall:apiCall) => ({
       return apiCall({path: '/rsFiles/updateShareFlags', data });
     },
   },
-  rsGxsChannels: {
-    createChannel: (data?: any) => {
+	rsGossipDiscovery: {
+		getDiscFriends: (data?: any) => {
+			//Rerval: boolean
+			return apiCall({path: '/rsGossipDiscovery/getDiscFriends', data });
+		},
+		getDiscPgpFriends: (data?: any) => {
+			//Rerval: boolean
+			return apiCall({path: '/rsGossipDiscovery/getDiscPgpFriends', data });
+		},
+		getPeerVersion: (data?: any) => {
+			//Rerval: boolean
+			return apiCall({path: '/rsGossipDiscovery/getPeerVersion', data });
+		},
+		getWaitingDiscCount: (data?: any) => {
+			//Rerval: boolean
+			return apiCall({path: '/rsGossipDiscovery/getWaitingDiscCount', data });
+		},
+	},
+	rsGxsChannels: {
+		createChannel: (data?: any):Promise<createChannelResponse> => {
       //Input: channel
       //Output: channel (RsGxsChannelGroup)
       //Rerval: boolean
-      return apiCall({path: '/rsGxsChannels/createChannel', data });
-    },
-    createComment: (data?: any) => {
+			return apiCall({path: '/rsGxsChannels/createChannel', data });
+		},
+		createChannelV2: (data?: any) => {
+			//Rerval: boolean
+			return apiCall({path: '/rsGxsChannels/createChannelV2', data });
+		},
+		createComment: (data?: any) => {
       //Input: comment
       //Output: comment (RsGxsComment)
-      //Rerval: boolean
-      return apiCall({path: '/rsGxsChannels/createComment', data });
-    },
-    createPost: (data?: any) => {
+			//Rerval: boolean
+			return apiCall({path: '/rsGxsChannels/createComment', data });
+		},
+		createCommentV2: (data?: any) => {
+			//Rerval: boolean
+			return apiCall({path: '/rsGxsChannels/createCommentV2', data });
+		},
+		createPost: (data?: any) => {
       //Input: post
       //Output: post (RsGxsChannelPost)
-      //Rerval: boolean
-      return apiCall({path: '/rsGxsChannels/createPost', data });
-    },
-    createVote: (data?: any) => {
+			//Rerval: boolean
+			return apiCall({path: '/rsGxsChannels/createPost', data });
+		},
+		createPostV2: (data?: any) => {
+			//Rerval: boolean
+			return apiCall({path: '/rsGxsChannels/createPostV2', data });
+		},
+		createVote: (data?: any) => {
       //Input: vote
       //Output: vote (RsGxsVote)
-      //Rerval: boolean
-      return apiCall({path: '/rsGxsChannels/createVote', data });
-    },
-    editChannel: (data?: any) => {
+			//Rerval: boolean
+			return apiCall({path: '/rsGxsChannels/createVote', data });
+		},
+		createVoteV2: (data?: any) => {
+			//Rerval: boolean
+			return apiCall({path: '/rsGxsChannels/createVoteV2', data });
+		},
+		editChannel: (data?: any) => {
       //Input: channel
       //Rerval: boolean
       return apiCall({path: '/rsGxsChannels/editChannel', data });
@@ -400,20 +447,74 @@ export const endpoints = (apiCall:apiCall) => ({
       return apiCall({path: '/rsGxsChannels/turtleSearchRequest', data });
     },
   },
-  rsGxsForums: {
-    createForum: (data?: any) => {
+	rsGxsCircles: {
+		cancelCircleMembership: (data?: any) => {
+			//Rerval: boolean
+			return apiCall({path: '/rsGxsCircles/cancelCircleMembership', data });
+		},
+		createCircle: (data?: any) => {
+			//Rerval: boolean
+			return apiCall({path: '/rsGxsCircles/createCircle', data });
+		},
+		editCircle: (data?: any) => {
+			//Rerval: boolean
+			return apiCall({path: '/rsGxsCircles/editCircle', data });
+		},
+		getCircleDetails: (data?: any) => {
+			//Rerval: boolean
+			return apiCall({path: '/rsGxsCircles/getCircleDetails', data });
+		},
+		getCircleExternalIdList: (data?: any) => {
+			//Rerval: boolean
+			return apiCall({path: '/rsGxsCircles/getCircleExternalIdList', data });
+		},
+		getCircleRequests: (data?: any) => {
+			//Rerval: boolean
+			return apiCall({path: '/rsGxsCircles/getCircleRequests', data });
+		},
+		getCirclesInfo: (data?: any) => {
+			//Rerval: boolean
+			return apiCall({path: '/rsGxsCircles/getCirclesInfo', data });
+		},
+		getCirclesSummaries: (data?: any) => {
+			//Rerval: boolean
+			return apiCall({path: '/rsGxsCircles/getCirclesSummaries', data });
+		},
+		inviteIdsToCircle: (data?: any) => {
+			//Rerval: boolean
+			return apiCall({path: '/rsGxsCircles/inviteIdsToCircle', data });
+		},
+		requestCircleMembership: (data?: any) => {
+			//Rerval: boolean
+			return apiCall({path: '/rsGxsCircles/requestCircleMembership', data });
+		},
+		requestStatus: (data?: any) => {
+			//Rerval: RsTokenService_GxsRequestStatus
+			return apiCall({path: '/rsGxsCircles/requestStatus', data });
+		},
+	},
+	rsGxsForums: {
+		createForum: (data?: any):Promise<createForumResponse> => {
       //Input: forum
       //Output: forum (RsGxsForumGroup)
-      //Rerval: boolean
-      return apiCall({path: '/rsGxsForums/createForum', data });
-    },
-    createMessage: (data?: any) => {
+			//Rerval: boolean
+			return apiCall({path: '/rsGxsForums/createForum', data });
+		},
+		createForumV2: (data?: any) => {
+			//Rerval: boolean
+			return apiCall({path: '/rsGxsForums/createForumV2', data });
+		},
+		createMessage: (data?: any) => {
       //Input: message
       //Output: message (RsGxsForumMsg)
-      //Rerval: boolean
-      return apiCall({path: '/rsGxsForums/createMessage', data });
-    },
-    editForum: (data?: any) => {
+			//Rerval: boolean
+			return apiCall({path: '/rsGxsForums/createMessage', data });
+		},
+		createPost: (data?: any) => {
+			//Rerval: boolean
+			return apiCall({path: '/rsGxsForums/createPost', data });
+		},
+		editForum: (data?: any) => {
       //Input: forum
       //Rerval: boolean
       return apiCall({path: '/rsGxsForums/editForum', data });
@@ -457,67 +558,156 @@ export const endpoints = (apiCall:apiCall) => ({
       return apiCall({path: '/rsGxsForums/subscribeToForum', data });
     },
   },
-  rsControl: {
-    isReady: (data?: any) => {
-      //Rerval: boolean
-      return apiCall({path: '/rsControl/isReady', data });
-    },
-  },
-  rsLoginHelper: {
+	rsIdentity: {
+		autoAddFriendIdsAsContact: (data?: any) => {
+			//Rerval: boolean
+			return apiCall({path: '/rsIdentity/autoAddFriendIdsAsContact', data });
+		},
+		createIdentity: (data?: any) => {
+			//Rerval: boolean
+			return apiCall({path: '/rsIdentity/createIdentity', data });
+		},
+		deleteBannedNodesThreshold: (data?: any) => {
+			//Rerval: number
+			return apiCall({path: '/rsIdentity/deleteBannedNodesThreshold', data });
+		},
+		deleteIdentity: (data?: any) => {
+			//Rerval: boolean
+			return apiCall({path: '/rsIdentity/deleteIdentity', data });
+		},
+		getIdDetails: (data?: any) => {
+			//Rerval: boolean
+			return apiCall({path: '/rsIdentity/getIdDetails', data });
+		},
+		getIdentitiesInfo: (data?: any) => {
+			//Rerval: boolean
+			return apiCall({path: '/rsIdentity/getIdentitiesInfo', data });
+		},
+		getIdentitiesSummaries: (data?: any) => {
+			//Rerval: boolean
+			return apiCall({path: '/rsIdentity/getIdentitiesSummaries', data });
+		},
+		getLastUsageTS: (data?: any) => {
+			//Rerval: number
+			return apiCall({path: '/rsIdentity/getLastUsageTS', data });
+		},
+		getOwnPseudonimousIds: (data?: any) => {
+			//Rerval: boolean
+			return apiCall({path: '/rsIdentity/getOwnPseudonimousIds', data });
+		},
+		getOwnSignedIds: (data?: any) => {
+			//Rerval: boolean
+			return apiCall({path: '/rsIdentity/getOwnSignedIds', data });
+		},
+		identityFromBase64: (data?: any) => {
+			//Rerval: boolean
+			return apiCall({path: '/rsIdentity/identityFromBase64', data });
+		},
+		identityToBase64: (data?: any) => {
+			//Rerval: boolean
+			return apiCall({path: '/rsIdentity/identityToBase64', data });
+		},
+		isARegularContact: (data?: any) => {
+			//Rerval: boolean
+			return apiCall({path: '/rsIdentity/isARegularContact', data });
+		},
+		isOwnId: (data?: any) => {
+			//Rerval: boolean
+			return apiCall({path: '/rsIdentity/isOwnId', data });
+		},
+		requestIdentity: (data?: any) => {
+			//Rerval: boolean
+			return apiCall({path: '/rsIdentity/requestIdentity', data });
+		},
+		requestStatus: (data?: any) => {
+			//Rerval: RsTokenService_GxsRequestStatus
+			return apiCall({path: '/rsIdentity/requestStatus', data });
+		},
+		setAsRegularContact: (data?: any) => {
+			//Rerval: boolean
+			return apiCall({path: '/rsIdentity/setAsRegularContact', data });
+		},
+		setAutoAddFriendIdsAsContact: (data?: any) => {
+			//Rerval: void
+			return apiCall({path: '/rsIdentity/setAutoAddFriendIdsAsContact', data });
+		},
+		setDeleteBannedNodesThreshold: (data?: any) => {
+			//Rerval: void
+			return apiCall({path: '/rsIdentity/setDeleteBannedNodesThreshold', data });
+		},
+		updateIdentity: (data?: any) => {
+			//Rerval: boolean
+			return apiCall({path: '/rsIdentity/updateIdentity', data });
+		},
+	},
+	rsControl: {
+		isReady: (data?: any) => {
+			//Rerval: boolean
+			return apiCall({path: '/rsControl/isReady', data });
+		},
+		rsGlobalShutDown: (data?: any) => {
+			//Rerval: void
+			return apiCall({path: '/rsControl/rsGlobalShutDown', data });
+		},
+	},
+	rsLoginHelper: {
     collectEntropy: (data?: any) => {
       //Input: bytes
       //Rerval: boolean
-      return apiCall({path: '/rsLoginHelper/collectEntropy', data });
-    },
-    getLocations: (data?: any) => {
+			return apiCall({path: '/rsLoginHelper/collectEntropy', data });
+		},
+		getLocations: (data?: any) => {
       //Output: locations ([RsLoginHelper_Location])
       //Rerval: void
-      return apiCall({path: '/rsLoginHelper/getLocations', data });
-    },
-    isLoggedIn: (data?: any) => {
+			return apiCall({path: '/rsLoginHelper/getLocations', data });
+		},
+		isLoggedIn: (data?: any) => {
       //Rerval: boolean
-      return apiCall({path: '/rsLoginHelper/isLoggedIn', data });
+			return apiCall({path: '/rsLoginHelper/isLoggedIn', data });
     },
     attemptLogin: (data?: any) => {
       return apiCall({path: '/rsLoginHelper/attemptLogin', data });
     },
-  },
-  rsAccounts: {
-    ExportIdentity: (data?: any) => {
-      //Input: filePath , pgpId
-      //Rerval: boolean
-      return apiCall({path: '/rsAccounts/ExportIdentity', data });
+    createLocation: (data: any):Promise<createLocationResponse> => {
+      return apiCall({path: '/rsLoginHelper/createLocation', data });
     },
-    exportIdentityToString: (data?: any) => {
+	},
+	rsAccounts: {
+		ExportIdentity: (data?: any) => {
+      //Input: filePath , pgpId
+			//Rerval: boolean
+			return apiCall({path: '/rsAccounts/ExportIdentity', data });
+		},
+		exportIdentityToString: (data?: any) => {
       //Input: pgpId , includeSignatures
       //Output: data (string), errorMsg (string)
-      //Rerval: boolean
-      return apiCall({path: '/rsAccounts/exportIdentityToString', data });
-    },
-    getCurrentAccountId: (data?: any) => {
+			//Rerval: boolean
+			return apiCall({path: '/rsAccounts/exportIdentityToString', data });
+		},
+		getCurrentAccountId: (data?: any) => {
       //Output: id (RsPeerId)
-      //Rerval: boolean
-      return apiCall({path: '/rsAccounts/getCurrentAccountId', data });
-    },
-    GetPGPLogins: (data?: any) => {
+			//Rerval: boolean
+			return apiCall({path: '/rsAccounts/getCurrentAccountId', data });
+		},
+		GetPGPLogins: (data?: any) => {
       //Output: pgpIds ([RsPgpId])
-      //Rerval: number
-      return apiCall({path: '/rsAccounts/GetPGPLogins', data });
-    },
-    ImportIdentity: (data?: any) => {
+			//Rerval: number
+			return apiCall({path: '/rsAccounts/GetPGPLogins', data });
+		},
+		ImportIdentity: (data?: any) => {
       //Input: filePath
       //Output: pgpId (RsPgpId), errorMsg (string)
-      //Rerval: boolean
-      return apiCall({path: '/rsAccounts/ImportIdentity', data });
-    },
-    importIdentityFromString: (data?: any) => {
+			//Rerval: boolean
+			return apiCall({path: '/rsAccounts/ImportIdentity', data });
+		},
+		importIdentityFromString: (data?: any) => {
       //Input: data
       //Output: pgpId (RsPgpId), errorMsg (string)
-      //Rerval: boolean
-      return apiCall({path: '/rsAccounts/importIdentityFromString', data });
-    },
-  },
-  rsMsgs: {
+			//Rerval: boolean
+			return apiCall({path: '/rsAccounts/importIdentityFromString', data });
+		},
+	},
+	rsMsgs: {
     acceptLobbyInvite: (data?: any) => {
       //Input: id , identity
       //Rerval: boolean
@@ -688,7 +878,11 @@ export const endpoints = (apiCall:apiCall) => ({
       //Rerval: boolean
       return apiCall({path: '/rsMsgs/sendChat', data });
     },
-    sendStatusString: (data?: any) => {
+		sendLobbyStatusPeerLeaving: (data?: any) => {
+			//Rerval: void
+			return apiCall({path: '/rsMsgs/sendLobbyStatusPeerLeaving', data });
+		},
+		sendStatusString: (data?: any) => {
       //Input: id , status_string
       //Rerval: void
       return apiCall({path: '/rsMsgs/sendStatusString', data });
@@ -755,7 +949,11 @@ export const endpoints = (apiCall:apiCall) => ({
       //Rerval: boolean
       return apiCall({path: '/rsPeers/addPeerLocator', data });
     },
-    assignPeersToGroup: (data?: any) => {
+		addSslOnlyFriend: (data?: any) => {
+			//Rerval: boolean
+			return apiCall({path: '/rsPeers/addSslOnlyFriend', data });
+		},
+		assignPeersToGroup: (data?: any) => {
       //Input: groupId , peerIds , assign
       //Rerval: boolean
       return apiCall({path: '/rsPeers/assignPeersToGroup', data });
@@ -819,12 +1017,20 @@ export const endpoints = (apiCall:apiCall) => ({
       //Rerval: boolean
       return apiCall({path: '/rsPeers/getPeersCount', data });
     },
-    GetRetroshareInvite: (data?: any) => {
+		getPgpFriendList: (data?: any) => {
+			//Rerval: boolean
+			return apiCall({path: '/rsPeers/getPgpFriendList', data });
+		},
+		GetRetroshareInvite: (data?: any) => {
       //Input: sslId , includeSignatures , includeExtraLocators
-      //Rerval: string
-      return apiCall({path: '/rsPeers/GetRetroshareInvite', data });
-    },
-    isFriend: (data?: any) => {
+			//Rerval: string
+			return apiCall({path: '/rsPeers/GetRetroshareInvite', data });
+		},
+		getShortInvite: (data?: any) => {
+			//Rerval: boolean
+			return apiCall({path: '/rsPeers/getShortInvite', data });
+		},
+		isFriend: (data?: any) => {
       //Input: sslId
       //Rerval: boolean
       return apiCall({path: '/rsPeers/isFriend', data });
@@ -839,7 +1045,11 @@ export const endpoints = (apiCall:apiCall) => ({
       //Rerval: boolean
       return apiCall({path: '/rsPeers/isPgpFriend', data });
     },
-    loadCertificateFromString: (data?: any) => {
+		isSslOnlyFriend: (data?: any) => {
+			//Rerval: boolean
+			return apiCall({path: '/rsPeers/isSslOnlyFriend', data });
+		},
+		loadCertificateFromString: (data?: any) => {
       //Input: cert
       //Output: sslId (RsPeerId), pgpId (RsPgpId), errorString (string)
       //Rerval: boolean
@@ -851,7 +1061,11 @@ export const endpoints = (apiCall:apiCall) => ({
       //Rerval: boolean
       return apiCall({path: '/rsPeers/loadDetailsFromStringCert', data });
     },
-    removeFriend: (data?: any) => {
+		parseShortInvite: (data?: any) => {
+			//Rerval: boolean
+			return apiCall({path: '/rsPeers/parseShortInvite', data });
+		},
+		removeFriend: (data?: any) => {
       //Input: pgpId
       //Rerval: boolean
       return apiCall({path: '/rsPeers/removeFriend', data });
@@ -892,7 +1106,69 @@ export const endpoints = (apiCall:apiCall) => ({
       return apiCall({path: '/rsPeers/setVisState', data });
     },
   },
-  rsServiceControl: {
+	rsReputations: {
+		autoPositiveOpinionForContacts: (data?: any) => {
+			//Rerval: boolean
+			return apiCall({path: '/rsReputations/autoPositiveOpinionForContacts', data });
+		},
+		banNode: (data?: any) => {
+			//Rerval: void
+			return apiCall({path: '/rsReputations/banNode', data });
+		},
+		getOwnOpinion: (data?: any) => {
+			//Rerval: boolean
+			return apiCall({path: '/rsReputations/getOwnOpinion', data });
+		},
+		getReputationInfo: (data?: any) => {
+			//Rerval: boolean
+			return apiCall({path: '/rsReputations/getReputationInfo', data });
+		},
+		isIdentityBanned: (data?: any) => {
+			//Rerval: boolean
+			return apiCall({path: '/rsReputations/isIdentityBanned', data });
+		},
+		isNodeBanned: (data?: any) => {
+			//Rerval: boolean
+			return apiCall({path: '/rsReputations/isNodeBanned', data });
+		},
+		overallReputationLevel: (data?: any) => {
+			//Rerval: RsReputationLevel
+			return apiCall({path: '/rsReputations/overallReputationLevel', data });
+		},
+		rememberBannedIdThreshold: (data?: any) => {
+			//Rerval: number
+			return apiCall({path: '/rsReputations/rememberBannedIdThreshold', data });
+		},
+		setAutoPositiveOpinionForContacts: (data?: any) => {
+			//Rerval: void
+			return apiCall({path: '/rsReputations/setAutoPositiveOpinionForContacts', data });
+		},
+		setOwnOpinion: (data?: any) => {
+			//Rerval: boolean
+			return apiCall({path: '/rsReputations/setOwnOpinion', data });
+		},
+		setRememberBannedIdThreshold: (data?: any) => {
+			//Rerval: void
+			return apiCall({path: '/rsReputations/setRememberBannedIdThreshold', data });
+		},
+		setThresholdForRemotelyNegativeReputation: (data?: any) => {
+			//Rerval: void
+			return apiCall({path: '/rsReputations/setThresholdForRemotelyNegativeReputation', data });
+		},
+		setThresholdForRemotelyPositiveReputation: (data?: any) => {
+			//Rerval: void
+			return apiCall({path: '/rsReputations/setThresholdForRemotelyPositiveReputation', data });
+		},
+		thresholdForRemotelyNegativeReputation: (data?: any) => {
+			//Rerval: number
+			return apiCall({path: '/rsReputations/thresholdForRemotelyNegativeReputation', data });
+		},
+		thresholdForRemotelyPositiveReputation: (data?: any) => {
+			//Rerval: number
+			return apiCall({path: '/rsReputations/thresholdForRemotelyPositiveReputation', data });
+		},
+	},
+	rsServiceControl: {
     getOwnServices: (data?: any) => {
       //Output: info (RsPeerServiceInfo)
       //Rerval: boolean

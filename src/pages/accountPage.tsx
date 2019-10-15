@@ -6,20 +6,20 @@ import {
   IonTitle,
   IonToolbar
 } from '@ionic/react';
-import './Tab1.css';
+import './accountPage.css';
 
-const Tab1: React.FC = () => {
+const AccountPage: React.FC = () => {
   return (
-    <IonPage>
+    <IonPage>      
       <IonHeader>
         <IonToolbar>
-          <IonTitle>Tab One</IonTitle>
+          <IonTitle>Account</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent>
       </IonContent>
     </IonPage>
-  );
+  )
 };
 
-export default Tab1;
+export default AccountPage;

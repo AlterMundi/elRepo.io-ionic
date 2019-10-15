@@ -2,7 +2,7 @@ import EventSource from './events';
 import Base64 from '../helpers/base64';
 import uuid from 'uuid/v4';
 import { endpoints } from './endpoints';
-import { basicResponse, apiRequest, apiState} from './types'
+import { basicResponse, apiRequest, apiState } from './types'
 
 let requestList = new Map();
 
@@ -51,18 +51,20 @@ const apiHttp = (
     }
 })
 
+
 const api = {
     state: {
         url:'http://localhost',
         port: '9092',
         login: false,
         user: {
-            mLocationId: ''
+            mLocationId: '',
+            mLocationName: ''
         },
         password: ''
     },
     isLogged: () => api.state.login,
-    setState: (state: apiState) => api.state = api.state = {...api.state, ...state},
+    setState: (state: apiState) => api.state = Object.assign({}, api.state, state),
     getUrl: () => api.state.url+':'+api.state.port,
     getBtoa: () => 'Basic ' + Base64.btoa(api.state.user.mLocationId + ":" + api.state.password),
     send:({ path, data, method }:apiRequest) =>  {

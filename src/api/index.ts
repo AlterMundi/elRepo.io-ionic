@@ -1,4 +1,4 @@
-import { loadOrCreateUser } from "./actions/loadOrCreateAccount";
+import { loadOrCreateUser } from "./actions/user/loadOrCreateAccount";
 
 export default {
     loadOrCreateUser,

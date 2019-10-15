@@ -494,13 +494,13 @@ export const endpoints = (apiCall:apiCall<any>) => ({
 		},
 	},
 	rsGxsForums: {
-		createForum: (data?: any):Promise<createForumResponse> => {
+		createForum: (data?: any):Promise<any> => {
       //Input: forum
       //Output: forum (RsGxsForumGroup)
 			//Rerval: boolean
 			return apiCall({path: '/rsGxsForums/createForum', data });
 		},
-		createForumV2: (data?: any) => {
+		createForumV2: (data?: any):Promise<createForumResponse> => {
 			//Rerval: boolean
 			return apiCall({path: '/rsGxsForums/createForumV2', data });
 		},

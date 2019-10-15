@@ -78,7 +78,7 @@ export interface createChannelResponse extends apiBasicResponse {
 }
 
 export interface createForumResponse extends apiBasicResponse {
-    forum: forum
+    forumId: string
 }
 
 export type basicResponse = createLocationResponse

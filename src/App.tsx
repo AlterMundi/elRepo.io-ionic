@@ -31,25 +31,28 @@ import '@ionic/react/css/display.css';
 
 /* Theme variables */
 import './theme/variables.css';
+import { ProvideAuth } from './RootContext';
 
 const App: React.FC = () => {
   return (
-    <IonApp>
-      <IonReactRouter>
-        <IonTabs>
-          <IonRouterOutlet>
-            <Route path="/account" component={AccountPage} exact={true} />
-            <Route exact path="/" render={() => <Redirect to="/account" />} />
-          </IonRouterOutlet>
-          <IonTabBar slot="bottom">
-            <IonTabButton tab="tab1" href="/account">
-              <IonIcon icon={person} />
-              <IonLabel>Account</IonLabel>
-            </IonTabButton>
-          </IonTabBar>
-        </IonTabs>
-      </IonReactRouter>
-    </IonApp>
+    <ProvideAuth>
+      <IonApp>
+        <IonReactRouter>
+          <IonTabs>
+            <IonRouterOutlet>
+              <Route path="/account" component={AccountPage} exact={true} />
+              <Route exact path="/" render={() => <Redirect to="/account" />} />
+            </IonRouterOutlet>
+            <IonTabBar slot="bottom">
+              <IonTabButton tab="tab1" href="/account">
+                <IonIcon icon={person} />
+                <IonLabel>Account</IonLabel>
+              </IonTabButton>
+            </IonTabBar>
+          </IonTabs>
+        </IonReactRouter>
+      </IonApp>
+    </ProvideAuth>
   );
 };
 

@@ -25,9 +25,9 @@ export interface apiCall<T> {
 
 export interface location {
     mLocationId: string,
-    mLocationName: string,
-    mPgpName: string,
-    mPgpId: string,
+    mLocationName?: string,
+    mPgpName?: string,
+    mPgpId?: string,
 }
 
 type gsxMeta = {

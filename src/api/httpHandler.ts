@@ -64,7 +64,10 @@ const api = {
         password: ''
     },
     isLogged: () => api.state.login,
-    setState: (state: apiState) => api.state = Object.assign({}, api.state, state),
+    setState: (state: apiState) => {
+        api.state = Object.assign({}, api.state, state)
+        dispatchEvent(new Event('apiChange'))
+    },
     getUrl: () => api.state.url+':'+api.state.port,
     getBtoa: () => 'Basic ' + Base64.btoa(api.state.user.mLocationId + ":" + api.state.password),
     send:({ path, data, method }:apiRequest) =>  {

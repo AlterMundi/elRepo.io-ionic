@@ -48,7 +48,7 @@ const App: React.FC = () => {
               <Route exact path="/" render={() => <Redirect to="/home" />} />
             </IonRouterOutlet>
             <IonTabBar slot="bottom">
-            <IonTabButton tab="tab1" href="/account">
+              <IonTabButton tab="tab1" href="/account">
                 <IonIcon icon={person} />
                 <IonLabel>Account</IonLabel>
               </IonTabButton>

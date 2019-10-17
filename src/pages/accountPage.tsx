@@ -12,9 +12,10 @@ import {
   IonListHeader,
   IonButton,
   IonButtons,
-  IonBackButton
+  IonBackButton,
+  IonPage
 } from '@ionic/react';
-import { checkmarkCircleOutline, closeCircleOutline } from 'ionicons/icons';
+import { checkmarkCircleOutline } from 'ionicons/icons';
 
 import './accountPage.css';
 import { useAuth } from '../RootContext';
@@ -23,7 +24,7 @@ import { loadOrCreateUser } from '../api/actions/user/loadOrCreateAccount';
 const AccountPage: React.FC = () => {
   const auth = useAuth();
   return (
-    <>  
+    <IonPage>  
       <IonHeader>
         <IonToolbar color={"primary"}>
           <IonButtons slot={"start"}>
@@ -56,7 +57,7 @@ const AccountPage: React.FC = () => {
           </IonItem>        
         </IonList>
       </IonContent>
-    </>
+    </IonPage>
   )
 };
 

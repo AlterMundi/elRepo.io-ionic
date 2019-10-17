@@ -1,13 +1,13 @@
 import React from 'react';
 import {
-  IonContent, IonHeader, IonToolbar, IonIcon, IonSearchbar, IonInput,
+  IonContent, IonPage
 } from '@ionic/react';
 
 import './homePage.css'
 
 const HomePage: React.FC = () => {
   return (
-    <>  
+    <IonPage>
       <IonContent class="ion-padding-start ion-padding-end" fullscreen color={'primary'}>
         <div className={'search-area'}>
           <div className={'search-input search-input--large'} >
@@ -15,7 +15,7 @@ const HomePage: React.FC = () => {
           </div>
         </div>
       </IonContent>
-    </>
+    </IonPage>
   )
 };
 

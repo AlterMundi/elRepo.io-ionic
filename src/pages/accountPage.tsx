@@ -2,23 +2,61 @@ import React from 'react';
 import {
   IonContent,
   IonHeader,
-  IonPage,
   IonTitle,
-  IonToolbar
+  IonToolbar,
+  IonItem,
+  IonLabel,
+  IonIcon,
+  IonText,
+  IonList,
+  IonListHeader,
+  IonButton,
+  IonButtons,
+  IonBackButton
 } from '@ionic/react';
+import { checkmarkCircleOutline, closeCircleOutline } from 'ionicons/icons';
+
 import './accountPage.css';
+import { useAuth } from '../RootContext';
+import { loadOrCreateUser } from '../api/actions/user/loadOrCreateAccount';
 
 const AccountPage: React.FC = () => {
+  const auth = useAuth();
   return (
-    <IonPage>      
+    <>  
       <IonHeader>
-        <IonToolbar>
+        <IonToolbar color={"primary"}>
+          <IonButtons slot={"start"}>
+          <IonBackButton defaultHref="/" />
+          </IonButtons>
           <IonTitle>Account</IonTitle>
         </IonToolbar>
       </IonHeader>
-      <IonContent>
+      <IonContent class="ion-padding-start ion-padding-end">
+        <IonList>
+          <IonListHeader>
+            RetroShare service
+          </IonListHeader>
+          <IonItem>
+              <IonLabel>
+                User
+              </IonLabel>
+              <IonText slot={'end'}>
+                {auth.account.split('-')[0]}
+              </IonText>
+          </IonItem>
+          <IonItem>
+              <IonLabel>
+                Status
+              </IonLabel>
+              { auth.loggedIn
+                 ? <IonIcon  icon={checkmarkCircleOutline} slot="end" color={'success'} />
+                 : <IonButton onClick={()=>loadOrCreateUser()}>Login</IonButton>
+              }
+          </IonItem>        
+        </IonList>
       </IonContent>
-    </IonPage>
+    </>
   )
 };
 

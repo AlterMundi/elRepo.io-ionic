@@ -3,6 +3,7 @@ import uuid from 'uuid/v1'
 import { createUserChannel } from "../createChannel"
 import { createUserForum } from "../createForum"
 import { credentials } from "../../../helpers/localStorage"
+import { login } from "./login"
 
 export const createUser = async():Promise<credentials> => {
     const { createLocation } = api.endpoints().rsLoginHelper
@@ -23,8 +24,10 @@ export const createUser = async():Promise<credentials> => {
     if (!retval) throw(new Error(errorMessge))
 
     //Create user channel and forum
+    let credentials = { account: location.mLocationId, password }
+    await login(credentials)
     await createUserChannel()
     await createUserForum()
-    
-    return { account: location.mLocationId, password }
+
+    return credentials
 }

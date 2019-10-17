@@ -2,10 +2,10 @@ import api from "../../httpHandler"
 import uuid from 'uuid/v1'
 import { createUserChannel } from "../createChannel"
 import { createUserForum } from "../createForum"
-import { credentials } from "../../../helpers/localStorage"
 import { login } from "./login"
+import { Credentials } from "../../../helpers/localStorage"
 
-export const createUser = async():Promise<credentials> => {
+export const createUser = async():Promise<Credentials> => {
     const { createLocation } = api.endpoints().rsLoginHelper
     const accountName = 'repo_' + uuid()
     const password = uuid()
@@ -24,7 +24,7 @@ export const createUser = async():Promise<credentials> => {
     if (!retval) throw(new Error(errorMessge))
 
     //Create user channel and forum
-    let credentials = { account: location.mLocationId, password }
+    let credentials:Credentials = { account: location.mLocationId, password }
     await login(credentials)
     await createUserChannel()
     await createUserForum()

@@ -1,8 +1,8 @@
 import api from "../../httpHandler"
-import { credentials } from "../../../helpers/localStorage"
+import { Credentials } from "../../../helpers/localStorage"
 import { location } from "../../types"
 
-export const login = async({account, password}: credentials):Promise<string> => {
+export const login = async({account, password}: Credentials):Promise<string> => {
     const { attemptLogin } = api.endpoints().rsLoginHelper
     const { retval, errorMessge }  = await attemptLogin({ account, password })
     if (retval) {

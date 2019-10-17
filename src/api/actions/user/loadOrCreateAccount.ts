@@ -1,9 +1,9 @@
 import api from "../../httpHandler"
-import { saveCredentials, getCredentials, credentials } from "../../../helpers/localStorage"
+import { saveCredentials, getCredentials, Credentials } from "../../../helpers/localStorage"
 import { createUser } from "./createUser"
 import { login } from "./login"
 
-export const loadOrCreateUser = async(loginCredentials?: credentials):Promise<string> => {
+export const loadOrCreateUser = async(loginCredentials?: Credentials):Promise<string> => {
     //Ignore if api is logged in
     if (api.isLogged()) return api.state.user.mLocationId
 

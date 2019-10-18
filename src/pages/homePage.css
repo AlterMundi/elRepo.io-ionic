@@ -1,6 +1,15 @@
 @charset "UTF-8";
+
+.homePage {
+    --background: linear-gradient(to right bottom, #e800ed, #ea00d2, #e700b9, #e100a2, #d90d8e);
+}
+
 .search-area {
- padding-top: 40%;
+ padding: 40px 0px;
+}
+.homeLogo {
+  max-width: 170px !important;
+  margin: 10px auto;
 }
 .search-input {
  position:relative;
@@ -8,7 +17,7 @@
 .search-input input {
  width:100%;
  font-weight:400;
- font-size:16px;
+ font-size:14px;
  border:0;
  outline:0;
  border-radius:6px;
@@ -17,7 +26,7 @@
  display:block;
  -webkit-appearance:none;
  vertical-align:middle;
- color: #999;
+ color: #000;
 }
 .search-input__clear {
  -webkit-transition:background .3s,opacity .3s;
@@ -106,17 +115,17 @@
  left:20px
 }
 .search-input input::-webkit-input-placeholder {
- color:#888;
+ color:#555;
 }
 .search-input input::-moz-placeholder {
- color:#888;
+ color:#555;
 }
 .search-input input:-ms-input-placeholder {
- color:#888;
+ color:#555;
 }
 .search-input input::-ms-input-placeholder {
- color:#888;
+ color:#555;
 }
 .search-input input::placeholder {
- color:#888;
+ color:#555;
 }

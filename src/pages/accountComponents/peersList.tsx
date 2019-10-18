@@ -1,5 +1,15 @@
 import React, { useState } from 'react';
-import { IonModal, IonButton, IonIcon, IonLoading, IonToolbar, IonHeader, IonTitle, IonSearchbar, IonItem, IonList, IonContent } from '@ionic/react';
+import { 
+  IonModal,
+  IonButton,
+  IonIcon,
+  IonToolbar,
+  IonHeader,
+  IonSearchbar,
+  IonItem,
+  IonList,
+  IonContent
+} from '@ionic/react';
 import { people } from 'ionicons/icons';
 import { getPeers } from '../../api/actions/peers/getPeers';
 import { SearchbarChangeEventDetail } from '@ionic/core';

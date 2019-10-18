@@ -17,7 +17,7 @@ import {
   IonAlert,
   IonToggle
 } from '@ionic/react';
-import { checkmarkCircleOutline, people, search } from 'ionicons/icons';
+import { checkmarkCircleOutline, search } from 'ionicons/icons';
 
 import './accountPage.css';
 import { useAuth } from '../RootContext';

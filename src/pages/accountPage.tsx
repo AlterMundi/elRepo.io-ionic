@@ -17,7 +17,7 @@ import {
   IonAlert,
   IonToggle
 } from '@ionic/react';
-import { checkmarkCircleOutline, people } from 'ionicons/icons';
+import { checkmarkCircleOutline, people, search } from 'ionicons/icons';
 
 import './accountPage.css';
 import { useAuth } from '../RootContext';
@@ -25,6 +25,7 @@ import { loadOrCreateUser } from '../api/actions/user/loadOrCreateAccount';
 import { handleDiscovery } from '../api/actions/discovery/handleDiscovery';
 import { setDiscoveryMode } from '../api/actions/discovery/setDiscoveryMode';
 import { loadDiscoveryMode } from '../api/actions/discovery/loadDiscoveryMode';
+import { PeerListButton } from './accountComponents/peersList';
 
 const AccountPage: React.FC = () => {
   const [ discoverySettings, setDiscoverySettings ] = useState({ autoPeering: true })
@@ -96,9 +97,15 @@ const AccountPage: React.FC = () => {
               Local network
             </IonLabel>
             <IonButton slot={'end'} onClick={loadPeers}>
-              <IonIcon  icon={people} slot="end"/>
+              <IonIcon  icon={search} slot="end"/>
               Find peers
             </IonButton>
+          </IonItem>
+          <IonItem disabled={!auth.loggedIn}>
+            <IonLabel>
+              Actual peers
+            </IonLabel>
+            <PeerListButton />
           </IonItem>
         </IonList>
         <IonAlert

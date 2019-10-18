@@ -4,8 +4,8 @@ import { location } from "../../types"
 
 export const login = async({account, password}: Credentials):Promise<string> => {
     const { attemptLogin } = api.endpoints().rsLoginHelper
-    const { retval, errorMessge }  = await attemptLogin({ account, password })
-    if (retval) {
+    const { retval }  = await attemptLogin({ account, password })
+    if (retval !== 3) {
         const { locations }: {locations: Array<location>} = await api.endpoints().rsLoginHelper.getLocations()
         api.setState({
             user:locations.find(loc => loc.mLocationId === account  ),
@@ -14,5 +14,5 @@ export const login = async({account, password}: Credentials):Promise<string> => 
         })
         return account
     }
-    throw(new Error(errorMessge))
+    throw(new Error('Wrong credentials'))
 }

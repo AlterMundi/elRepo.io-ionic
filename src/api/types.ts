@@ -25,7 +25,7 @@ export interface apiCall<T> {
 
 export interface location {
     mLocationId: string,
-    mLocationName?: string,
+    mLocationName: string,
     mPgpName?: string,
     mPgpId?: string,
 }

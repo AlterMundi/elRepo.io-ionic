@@ -1,13 +1,19 @@
 import React, { useState, useEffect, useContext, createContext } from "react";
 import api from './api/httpHandler';
+import { location } from "./api/types";
 
 interface AppContextInterface {
-    account: string,
+    account: location,
     loggedIn: boolean
 }
 
+const emptyAccount: location = {
+  mLocationId: '',
+  mLocationName: ''
+}
+
 const AuthContext = createContext<AppContextInterface>({
-    account: '',
+    account: emptyAccount,
     loggedIn: false
 });
 
@@ -23,15 +29,13 @@ export const useAuth = () => {
 
 
 function useProvideAuth() {
-  const [account, setAccount] = useState('')
+  const [account, setAccount] = useState(emptyAccount)
   const [loggedIn, setLoggedIn] = useState(false);
   
   const changeAuthState = () => {
     if (api.state.login !== loggedIn) {
         setLoggedIn(api.state.login)
-    }
-    if (api.state.user.mLocationId !== account) {
-        setAccount(api.state.user.mLocationId)
+        setAccount(api.state.user)
     }
   }
 

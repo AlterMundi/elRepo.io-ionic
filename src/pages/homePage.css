@@ -68,12 +68,11 @@
 .search-input--small .search-input__clear--active:hover {
  background-color:#dce3f0
 }
-.search-input:before {
- font-family:Ionicons;
- content:"\f425";
+.search-icon {
+ font-size: 30px;
+ padding-left: 10px;
  color:#888;
  position:absolute;
- height:24px;
  top:50%;
  -webkit-transform:translateY(-50%);
  transform:translateY(-50%)

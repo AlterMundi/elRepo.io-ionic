@@ -10,11 +10,13 @@ import {
   IonTabs
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
-import { person, share } from 'ionicons/icons';
+import { person, share, filing } from 'ionicons/icons';
 
 /* Import pages */
 import HomePage from './pages/homePage'
 import AccountPage from './pages/accountPage';
+import MemoryPage from './pages/memoryPage'
+import SharePage from './pages/sharePage'
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -45,6 +47,8 @@ const App: React.FC = () => {
             <IonRouterOutlet>
               <Route path="/home" component={HomePage} exact={true} />
               <Route path="/account" component={AccountPage} exact={true} />
+              <Route path="/memory" component={MemoryPage} exact={true} />
+              <Route path="/share" component={SharePage} exact={true} />
               <Route exact path="/" render={() => <Redirect to="/home" />} />
             </IonRouterOutlet>
             <IonTabBar slot="bottom">
@@ -53,7 +57,7 @@ const App: React.FC = () => {
                 <IonLabel>Account</IonLabel>
               </IonTabButton>
               <IonTabButton tab="tab2" href="/memory">
-                <IonIcon icon={person} />
+                <IonIcon icon={filing} />
                 <IonLabel>Memory</IonLabel>
               </IonTabButton>
               <IonTabButton tab="tab3" href="/share">

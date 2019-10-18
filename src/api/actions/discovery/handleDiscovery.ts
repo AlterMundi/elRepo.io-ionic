@@ -1,4 +1,4 @@
-import { loadDiscoveryMode } from "./loadDiscoveryMode"
+/*import { loadDiscoveryMode } from "./loadDiscoveryMode"*/
 import api from "../../httpHandler"
 import { location } from "../../types"
 

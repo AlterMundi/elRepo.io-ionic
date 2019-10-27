@@ -13,11 +13,12 @@ import {
 import { people } from 'ionicons/icons';
 import { getPeers } from '../../api/actions/peers/getPeers';
 import { SearchbarChangeEventDetail } from '@ionic/core';
+import { PeerItem } from './peerItem';
 
 interface PeerListProps {
   children?: React.ReactNode,
   show: boolean,
-  peers: string[]
+  peers: string[],
   close: ()=>void
 }
 
@@ -37,14 +38,11 @@ export const PeerList: React.FC<PeerListProps> = ({show, close, peers}) => {
         </IonHeader>
         <IonContent>
           <IonList>
-            {peers
-              .filter(peer => peer.indexOf(word) !== -1)
-              .map(peer => (
-                <IonItem key={peer}>
-                  {peer}
-                </IonItem>
-              )
-            )}
+            {
+              peers.map(peer => (
+                <PeerItem peerId={peer} key={peer} filterWord={word} show={show}/>
+              ))
+            }
           </IonList>
         </IonContent>
       </IonModal>

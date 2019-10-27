@@ -26,6 +26,7 @@ import { handleDiscovery } from '../api/actions/discovery/handleDiscovery';
 import { setDiscoveryMode } from '../api/actions/discovery/setDiscoveryMode';
 import { loadDiscoveryMode } from '../api/actions/discovery/loadDiscoveryMode';
 import { PeerListButton } from './accountComponents/peersList';
+import { joinTiers } from '../api/actions/tier1/joinTier';
 
 const AccountPage: React.FC = () => {
   const [ discoverySettings, setDiscoverySettings ] = useState({ autoPeering: true })
@@ -91,6 +92,15 @@ const AccountPage: React.FC = () => {
               Auto peering
             </IonLabel>
             <IonToggle slot={'end'} checked={discoverySettings.autoPeering} onClick={()=>changeDiscovery()}/>
+          </IonItem>
+          <IonItem disabled={!auth.loggedIn}>
+            <IonLabel>
+              Tier1 stauts
+            </IonLabel>
+            <IonButton slot={'end'} onClick={joinTiers}>
+              <IonIcon  icon={search} slot="end"/>
+              Join
+            </IonButton>
           </IonItem>
           <IonItem disabled={!auth.loggedIn}>
             <IonLabel>

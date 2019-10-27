@@ -1,5 +1,5 @@
 // eslint-disable-next-line 
-import { apiCall, createLocationResponse, createChannelResponse, createForumResponse, forum } from './types';
+import { apiCall, createLocationResponse, createChannelResponse, createForumResponse, forum, basicResponse, apiBasicResponse } from './types';
 
 export const endpoints = (apiCall:apiCall<any>) => ({
 	jsonApiServer: {
@@ -1021,7 +1021,7 @@ export const endpoints = (apiCall:apiCall<any>) => ({
 			//Rerval: boolean
 			return apiCall({path: '/rsPeers/getPgpFriendList', data });
 		},
-		GetRetroshareInvite: (data?: any) => {
+		GetRetroshareInvite: (data?: any):Promise<{retval: string}> => {
       //Input: sslId , includeSignatures , includeExtraLocators
 			//Rerval: string
 			return apiCall({path: '/rsPeers/GetRetroshareInvite', data });

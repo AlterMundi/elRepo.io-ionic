@@ -1,9 +1,10 @@
 import api from "../../httpHandler"
 import uuid from 'uuid/v1'
-import { createUserChannel } from "../createChannel"
-import { createUserForum } from "../createForum"
+import { createUserChannel } from "../messages/createChannel"
+import { createUserForum } from "../messages/createForum"
 import { login } from "./login"
 import { Credentials } from "../../../helpers/localStorage"
+import { createIdentity } from "./manageIdentity"
 
 export const createUser = async():Promise<Credentials> => {
     const { createLocation } = api.endpoints().rsLoginHelper
@@ -28,6 +29,6 @@ export const createUser = async():Promise<Credentials> => {
     await login(credentials)
     await createUserChannel()
     await createUserForum()
-
+    await createIdentity('Public')
     return credentials
 }

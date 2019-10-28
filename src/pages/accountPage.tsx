@@ -27,6 +27,7 @@ import { setDiscoveryMode } from '../api/actions/discovery/setDiscoveryMode';
 import { loadDiscoveryMode } from '../api/actions/discovery/loadDiscoveryMode';
 import { PeerListButton } from './accountComponents/peersList';
 import { joinTiers } from '../api/actions/tier1/joinTier';
+import { IdentitiesListButton } from './accountComponents/identitiesList';
 
 const AccountPage: React.FC = () => {
   const [ discoverySettings, setDiscoverySettings ] = useState({ autoPeering: true })
@@ -116,6 +117,12 @@ const AccountPage: React.FC = () => {
               Actual peers
             </IonLabel>
             <PeerListButton />
+          </IonItem>
+          <IonItem disabled={!auth.loggedIn}>
+            <IonLabel>
+              Itentities
+            </IonLabel>
+            <IdentitiesListButton />
           </IonItem>
         </IonList>
         <IonAlert

@@ -1,4 +1,4 @@
-import api from "../httpHandler"
+import api from "../../httpHandler"
 
 export const createChannel = async(name:string) => {
     const { rsGxsChannels } = api.endpoints()

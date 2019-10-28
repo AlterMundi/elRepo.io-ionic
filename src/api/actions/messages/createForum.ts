@@ -1,4 +1,4 @@
-import api from "../httpHandler"
+import api from "../../httpHandler"
 
 export const createForum = async(name:string) => {
     const { rsGxsForums } = api.endpoints()

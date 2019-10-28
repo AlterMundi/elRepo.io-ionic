@@ -1,8 +1,13 @@
 import api from "../../httpHandler"
 
-interface Identity {
+interface IdentityRs {
     mGroupName: string,
     mGroupId: string
+}
+
+export interface Identity {
+    id: string,
+    name: string
 }
 
 export const createIdentity = async(name:string):Promise<string> => {
@@ -19,7 +24,7 @@ export const createIdentity = async(name:string):Promise<string> => {
 export const loadIdentities = async() => {
     const { getIdentitiesSummaries } = api.endpoints().rsIdentity
 
-    const { ids }:{ids:Array<Identity>} = await getIdentitiesSummaries()
+    const { ids }:{ids:Array<IdentityRs>} = await getIdentitiesSummaries()
     
     return ids.map(id => ({ name: id.mGroupName, id: id.mGroupId }))
 }
@@ -29,4 +34,9 @@ export const deleteIdentity = async(id: string) => {
     const { deleteIdentity } = api.endpoints().rsIdentity
     const { retval }:{retval:boolean} = await deleteIdentity(id)
     return retval
+}
+
+export const editIdentity = async({id, name }: Identity) => {
+    //TODO
+    return;
 }

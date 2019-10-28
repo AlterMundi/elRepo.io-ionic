@@ -120,7 +120,7 @@ const AccountPage: React.FC = () => {
           </IonItem>
           <IonItem disabled={!auth.loggedIn}>
             <IonLabel>
-              Itentities
+              Identities
             </IonLabel>
             <IdentitiesListButton />
           </IonItem>

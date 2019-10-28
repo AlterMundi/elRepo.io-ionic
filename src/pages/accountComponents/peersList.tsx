@@ -6,7 +6,6 @@ import {
   IonToolbar,
   IonHeader,
   IonSearchbar,
-  IonItem,
   IonList,
   IonContent
 } from '@ionic/react';

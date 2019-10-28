@@ -8,14 +8,11 @@ import {
   IonContent,
   IonTitle,
   IonButtons,
-  IonBackButton,
   IonToolbar,
-  IonAlert
 } from '@ionic/react';
-import { people, personAdd, returnLeft } from 'ionicons/icons';
+import { personAdd, returnLeft } from 'ionicons/icons';
 import { Identity, loadIdentities, editIdentity, createIdentity } from '../../api/actions/user/manageIdentity';
 import { IdentityItem } from './identityItem';
-import { alertController } from '@ionic/core';
 
 interface ListProps {
   children?: React.ReactNode,

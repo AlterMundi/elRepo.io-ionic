@@ -26,7 +26,7 @@ export const PeerItem: React.FC<PeerItemProps> = ({ peerId, filterWord, show }) 
       getPeerInfo(peerId).then(peerData => setData(peerData))
       getPeerStatus(peerId).then(peerStatus => setOnline(peerStatus.retval))
     }
-  }, [show])
+  }, [show, peerId])
 
   return data && data.det.name.indexOf(filterWord) !== -1 ?
     (<IonItem>

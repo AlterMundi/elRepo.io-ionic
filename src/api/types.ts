@@ -16,7 +16,7 @@ export interface apiRequest {
 
 export interface apiBasicResponse {
     retval: boolean,
-    errorMessge?: string,
+    errorMessage?: string,
 }
 
 export interface apiCall<T> {
@@ -81,6 +81,56 @@ export interface createForumResponse extends apiBasicResponse {
     forumId: string
 }
 
+export interface MsgMetas {
+        mAuthorId: string,
+        mChildTs: number,
+        mChildTs_sixtyfour_str: string,
+        mGroupId: string,
+        mMsgFlags: number,
+        mMsgId: string,
+        mMsgName: string,
+        mMsgStatus: number,
+        mOrigMsgId: string,
+        mParentId: string,
+        mPublishTs: number,
+        mPublishTs_sixtyfour_str: string,
+        mServiceString: string,
+        mThreadId: string
+    }
+
+export interface listForumMessagesResponse extends apiBasicResponse {
+    msgMetas: MsgMetas[]
+}
+
+export interface ForumRS {
+    mAuthenFlags: number
+    mAuthorId: string,
+    mCircleId: string,
+    mCircleType: number
+    mGroupFlags: number,
+    mGroupId: string
+    mGroupName: string,
+    mGroupStatus: number,
+    mInternalCircle: string,
+    mLastPost: number,
+    mLastPost_sixtyfour_str: string,
+    mOriginator: string,
+    mParentGrpId: string,
+    mPop: number,
+    mPublishTs: number,
+    mPublishTs_sixtyfour_str: string,
+    mServiceString: string,
+    mSignFlags: number,
+    mSubscribeFlags: number,
+    mVisibleMsgCount: number
+}
+
+export interface GetForumsInfoResponse extends apiBasicResponse {
+    forums: ForumRS[]
+}
+
 export type basicResponse = createLocationResponse
     | createChannelResponse
     | createForumResponse
+    | GetForumsInfoResponse
+    | listForumMessagesResponse

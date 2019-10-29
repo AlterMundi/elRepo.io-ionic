@@ -1,5 +1,5 @@
 // eslint-disable-next-line 
-import { apiCall, createLocationResponse, createChannelResponse, createForumResponse, forum, basicResponse, apiBasicResponse } from './types';
+import { apiCall, createLocationResponse, createChannelResponse, createForumResponse, forum, basicResponse, apiBasicResponse, listForumMessagesResponse, GetForumsInfoResponse } from './types';
 
 export const endpoints = (apiCall:apiCall<any>) => ({
 	jsonApiServer: {
@@ -525,22 +525,22 @@ export const endpoints = (apiCall:apiCall<any>) => ({
       //Rerval: boolean
       return apiCall({path: '/rsGxsForums/getForumContent', data });
     },
-    getForumMsgMetaData: (data?: any) => {
+    getForumMsgMetaData: (data:{forumId: string}): Promise<listForumMessagesResponse> => {
       //Input: forumId
       //Output: msgMetas ([RsMsgMetaData])
       //Rerval: boolean
       return apiCall({path: '/rsGxsForums/getForumMsgMetaData', data });
     },
-    getForumsInfo: (data?: any) => {
+    getForumsInfo: (data: { forumIds: string[] }) => {
       //Input: forumIds
       //Output: forumsInfo ([RsGxsForumGroup])
       //Rerval: boolean
       return apiCall({path: '/rsGxsForums/getForumsInfo', data });
     },
-    getForumsSummaries: (data?: any) => {
+    getForumsSummaries: (data?: any):  Promise<GetForumsInfoResponse> => {
       //Output: forums ([RsGroupMetaData])
       //Rerval: boolean
-      return apiCall({path: '/rsGxsForums/getForumsSummaries', data });
+      return apiCall({path: '/rsGxsForums/getForumsSummaries', data }) ;
     },
     markRead: (data?: any) => {
       //Input: messageId , read

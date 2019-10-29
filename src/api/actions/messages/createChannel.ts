@@ -15,7 +15,7 @@ export const createChannel = async(name:string) => {
 
     const data = await rsGxsChannels.createChannel(groupData)
     if (!data.retval) {
-        throw(new Error(data.errorMessge))
+        throw(new Error(data.errorMessage))
     }
     return data.channel
 }

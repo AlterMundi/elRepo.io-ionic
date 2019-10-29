@@ -13,14 +13,18 @@ import './memoryPage.css';
 
 import { listForums, Forum } from '../api/actions/messages/listForums';
 import { ForumList } from './memoryComponents/memoryForum';
+import { useAuth } from '../RootContext';
 
 const MemoryPage: React.FC = () => {
   const [forums, setForums] = useState<Forum[]|null>(null)
+  const { loggedIn } = useAuth()
+
   useEffect(() => {
-    if(!forums || forums.length === 0) {
+    if(loggedIn && (!forums || forums.length === 0)) {
       listForums().then(setForums)
     }
-  })
+  }, [loggedIn])
+
   return (
     <IonPage>  
       <IonHeader>

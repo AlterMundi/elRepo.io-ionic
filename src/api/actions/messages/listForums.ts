@@ -42,8 +42,9 @@ export const listPosts = async(forumId: string) => {
     const {msgMetas} = await getForumMsgMetaData({forumId})
     
     return msgMetas.map(msg => ({
+        id: msg.mMsgId,
         title: msg.mMsgName,
         author: msg.mAuthorId,
-        date: msg.mPublishTs
+        date: msg.mPublishTs * 1000
     }))
 }

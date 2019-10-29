@@ -102,6 +102,10 @@ export interface listForumMessagesResponse extends apiBasicResponse {
     msgMetas: MsgMetas[]
 }
 
+export interface messagesContentResponse extends apiBasicResponse {
+    msgs: {mMeta: MsgMetas, mMsg: string}[]
+}
+
 export interface ForumRS {
     mAuthenFlags: number
     mAuthorId: string,
@@ -134,3 +138,4 @@ export type basicResponse = createLocationResponse
     | createForumResponse
     | GetForumsInfoResponse
     | listForumMessagesResponse
+    | messagesContentResponse

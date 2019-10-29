@@ -1,5 +1,5 @@
 // eslint-disable-next-line 
-import { apiCall, createLocationResponse, createChannelResponse, createForumResponse, forum, basicResponse, apiBasicResponse, listForumMessagesResponse, GetForumsInfoResponse } from './types';
+import { apiCall, createLocationResponse, createChannelResponse, createForumResponse, forum, basicResponse, apiBasicResponse, listForumMessagesResponse, GetForumsInfoResponse, messagesContentResponse } from './types';
 
 export const endpoints = (apiCall:apiCall<any>) => ({
 	jsonApiServer: {
@@ -519,7 +519,7 @@ export const endpoints = (apiCall:apiCall<any>) => ({
       //Rerval: boolean
       return apiCall({path: '/rsGxsForums/editForum', data });
     },
-    getForumContent: (data?: any) => {
+    getForumContent: (data: {forumId: string, msgsIds: string[]}): Promise<messagesContentResponse> => {
       //Input: forumId , msgsIds
       //Output: msgs ([RsGxsForumMsg])
       //Rerval: boolean

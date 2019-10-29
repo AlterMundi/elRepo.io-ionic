@@ -21,8 +21,8 @@ export const createUser = async():Promise<Credentials> => {
         makeAutoTor: false
     }
 
-    const { retval, errorMessge, location } = await createLocation(userCredentials)
-    if (!retval) throw(new Error(errorMessge))
+    const { retval, errorMessage, location } = await createLocation(userCredentials)
+    if (!retval) throw(new Error(errorMessage))
 
     //Create user channel and forum
     let credentials:Credentials = { account: location.mLocationId, password }

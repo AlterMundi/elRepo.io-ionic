@@ -1,4 +1,5 @@
 import api from "../../httpHandler"
+import { createForum } from "../messages/createForum"
 
 interface IdentityRs {
     mGroupName: string,
@@ -18,6 +19,8 @@ export const createIdentity = async(name:string):Promise<string> => {
     
     if (!retval) throw(new Error('Create identity fail'))
     
+    await createForum('repo_'+name, id)
+
     return id;
 }
 

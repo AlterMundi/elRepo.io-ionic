@@ -10,7 +10,9 @@ export interface forumInput {
 }
 
 interface Forum {
-    mGroupName: string
+    mGroupName: string,
+    mAuthorId: string,
+    mGroupId: string,
 }
 
 export const createMessage = async({
@@ -24,20 +26,21 @@ export const createMessage = async({
     
     /* TODO: Handle cattegories, image and file */
 
-    const { rsGxsForums } = api.endpoints()
-    const {forums} = await rsGxsForums.getForumsSummaries()
+    const { getForumsSummaries, createPost } = api.endpoints().rsGxsForums
+    const {forums}:{forums:Forum[]} = await getForumsSummaries()
     
-    const forumId = forums.find((forum:Forum) => forum.mGroupName === api.state.user.mLocationName).mGroupId
-    
-    const data = await rsGxsForums.createPost({
+    const { mGroupId } = forums.find(forum => forum.mAuthorId === identityId) || {}
+
+    const data = await createPost({
         title,
-        forumId,
+        forumId: mGroupId,
         mBody: description,
-        authorId: identityId
+        authorId: identityId,
+        mPublishTs: Date.now()
     })
 
     if (!data.retval) {
-        throw(new Error(data.errorMessge))
+        throw(new Error(data.errorMessage))
     }
     
     return data

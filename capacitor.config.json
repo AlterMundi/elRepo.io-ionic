@@ -1,0 +1,11 @@
+{
+  "appId": "io.ionic.starter",
+  "appName": "repoio",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "build",
+  "cordova": {},
+  "server": {
+    "url": "http://192.168.43.86:8100"
+  }
+}

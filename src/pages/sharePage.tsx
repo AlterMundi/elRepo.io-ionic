@@ -24,6 +24,7 @@ import { createMessage, forumInput } from '../api/actions/messages/createMessage
 import './sharePage.css';
 import { Identity, loadIdentities } from '../api/actions/user/manageIdentity';
 import { SelectChangeEventDetail } from '@ionic/core';
+import { useAuth } from '../RootContext';
 
 
 const SharePage: React.FC = () => {
@@ -39,6 +40,7 @@ const SharePage: React.FC = () => {
 
   const [identities, setIdentities] = useState<Identity[] | null>(null);
   const [ toast, setToast ] = useState(false)
+  const { loggedIn } = useAuth()
 
   const reloadIdentities = async() => {
     loadIdentities().then(setIdentities)
@@ -49,7 +51,7 @@ const SharePage: React.FC = () => {
       setIdentities([])
       reloadIdentities()
     }
-  })
+  }, [loggedIn])
   
   const publish = () => {
     const {title, description } = form;
@@ -91,7 +93,7 @@ const SharePage: React.FC = () => {
           </IonButtons>
           <IonTitle>Share content</IonTitle>
           <IonButtons slot={"end"}>
-          <IonButton fill={'outline'} onClick={publish}>
+          <IonButton fill={'outline'} onClick={publish} disabled={!loggedIn}>
             <IonIcon icon={cloudUpload} style={{marginRight: '10px'}}/>
             Publish
           </IonButton>

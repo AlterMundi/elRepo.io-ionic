@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext, createContext } from "react";
 import api from './api/httpHandler';
 import { location } from "./api/types";
+import { loadOrCreateUser } from "./api/actions/user/loadOrCreateAccount";
 
 interface AppContextInterface {
     account: location,
@@ -19,6 +20,8 @@ const AuthContext = createContext<AppContextInterface>({
 
 
 export function ProvideAuth({ children }: { children: any}) {
+  //Start api
+  loadOrCreateUser()
   const auth = useProvideAuth();
   return <AuthContext.Provider value={auth}>{children}</AuthContext.Provider>;
 }

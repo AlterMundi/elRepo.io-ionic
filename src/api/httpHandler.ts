@@ -8,7 +8,7 @@ let requestList = new Map();
 
 const logRequest = (type: string, data: any) => {
     //Only for debug
-    console.log('API ', type, data)
+    console.log('API '+ type + JSON.stringify({data}))
 }
 
 const pullRequest = ()  => {
@@ -54,7 +54,7 @@ const apiHttp = (
 
 const api = {
     state: {
-        url:'http://localhost',
+        url:'http://127.0.0.1',
         port: '9092',
         login: false,
         user: {
